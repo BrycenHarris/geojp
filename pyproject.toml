@@ -4,7 +4,7 @@ version = "0.0.1"
 dynamic = [
     "dependencies",
 ]
-description = "A python package for my Geospacial Anlaysis class"
+description = "A python package for my Geospacial Analysis class"
 readme = "README.md"
 requires-python = ">=3.8"
 keywords = [

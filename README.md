@@ -5,7 +5,7 @@
 [![image](https://img.shields.io/conda/vn/conda-forge/geojp.svg)](https://anaconda.org/conda-forge/geojp)
 
 
-**A python package for my Geospacial Anlysis class**
+**A python package for my Geospacial Anlaysis class**
 
 
 -   Free software: MIT License

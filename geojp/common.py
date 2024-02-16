@@ -12,4 +12,5 @@ def random_number():
     Returns:
         float: A random number between 0 and 1
     """
-    import random.random()
+    import random
+    return random.random()

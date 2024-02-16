@@ -81,6 +81,8 @@ nav:
     - Report Issues: https://github.com/BrycenHarris/geojp/issues
     - Examples:
         - examples/intro.ipynb
+    - Notebooks:
+        - notebooks/colab.ipynb
     - API Reference:
           - geojp module: geojp.md
           - common module: common.md

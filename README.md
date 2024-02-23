@@ -1,4 +1,5 @@
-# geojp
+# Welcome to geojp
+![](https://oyster.ignimgs.com/wordpress/stg.ign.com/2013/04/JurassicPark_040413_1600.jpg?width=1920)
 
 
 [![image](https://img.shields.io/pypi/v/geojp.svg)](https://pypi.python.org/pypi/geojp)
@@ -16,7 +17,3 @@
 ## Features
 [![image](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ACdkkGf42pxVr_FYClmFkHEVHVkgtMlu#scrollTo=iyQ_0vYVtNwV)
 -   Generate random numbers
-
-
-## Demos
-![](https://brand.utk.edu/wp-content/uploads/2019/02/University-HorizLeftLogo-RGB-1024x475.jpg)

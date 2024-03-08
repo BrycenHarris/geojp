@@ -82,11 +82,12 @@ nav:
     - Examples:
         - examples/intro.ipynb
     - Notebooks:
-        - notebooks/lab4.ipynb
-        - notebooks/lab5.ipynb
+        - Notebooks/lab4.ipynb
+        - Notebooks/lab5.ipynb
+
     - API Reference:
           - geojp module: geojp.md
           - common module: common.md
     -Labs:
-        - notebooks/lab4.ipynb
-        - notebooks/lab5.ipynb
+        - Labs/lab4.ipynb
+        - Labs/lab5.ipynb

@@ -81,9 +81,9 @@ nav:
     - Report Issues: https://github.com/BrycenHarris/geojp/issues
     - Examples:
         - examples/intro.ipynb
-        - examples/random.iypnb
+        - examples/random.ipynb
         - examples/ipyleaflet.ipynb
-        - examples-csv.ipynb
+        - examples/csv.ipynb
 
     - Notebooks:
         - Notebooks/lab4.ipynb

@@ -88,6 +88,7 @@ nav:
     - API Reference:
           - geojp module: geojp.md
           - common module: common.md
+          - utils module: utils.md
     - labs:
         - labs/lab4.ipynb
         - labs/lab5.ipynb

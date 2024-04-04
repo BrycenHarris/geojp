@@ -140,3 +140,19 @@ class Map(ipyleaflet.Map):
         if zoom_to_layer:
             self.center = client.center()
             self.zoom = client.default_zoom
+
+    def add_vector(self, data):
+   
+        import geopandas as gpd
+        from ipyleaflet import GeoData
+
+        if isinstance(data, gpd.GeoDataFrame):
+            vector_layer = GeoData(geo_dataframe=data)
+            
+        elif isinstance(data, str):
+            vector_layer = GeoData(geo_dataframe=gpd.read_file(data))
+            
+        else:
+            raise ValueError("Unsupported data format. Please provide a GeoDataFrame or a file path.")
+
+        self.add_layer(vector_layer)

@@ -86,6 +86,7 @@ nav:
         - examples/csv.ipynb
         - examples/raster.ipynb
         - examples/image.ipynb
+        - examples/map.ipynb
 
     - Notebooks:
         - Notebooks/lab4.ipynb

@@ -3,7 +3,23 @@
 import ipyleaflet
 from ipyleaflet import basemaps, WidgetControl
 import ipywidgets as widgets
+import os
 
+import os
+import ipyleaflet
+
+from box import Box
+from IPython.display import display
+from .basemaps import xyz_to_leaflet
+from .common import *
+from .legends import builtin_legends
+from .osm import *
+from .pc import *
+#from . import examples
+from .map_widgets import *
+from .plot import *
+
+basemaps = Box(xyz_to_leaflet(), frozen_box=True)
 
 class Map(ipyleaflet.Map):
     """This is the map class that inherits from ipyleaflet.Map.
@@ -19,12 +35,21 @@ class Map(ipyleaflet.Map):
             center (list, optional): Set the center of the map. Defaults to [20, 0].
             zoom (int, optional): Set the zoom level of the map. Defaults to 2.
         """
+        self.split_control=None
+
+        if "basemap" in kwargs:
+                    if isinstance(kwargs["basemap"], str):
+                        kwargs["basemap"] = get_basemap(kwargs["basemap"])
 
         if "scroll_wheel_zoom" not in kwargs:
             kwargs["scroll_wheel_zoom"] = True
 
         if "add_layer_control" not in kwargs:
             layer_control_flag = True
+
+        
+
+
         else:
             layer_control_flag = kwargs["add_layer_control"]
         kwargs.pop("add_layer_control", None)
@@ -142,7 +167,7 @@ class Map(ipyleaflet.Map):
             self.center = client.center()
             self.zoom = client.default_zoom
 
-    def add_vector(self, data):
+    def add_vector(self, data, layer_name):
    
         import geopandas as gpd
         from ipyleaflet import GeoData
@@ -156,7 +181,7 @@ class Map(ipyleaflet.Map):
         else:
             raise ValueError("Unsupported data format. Please provide a GeoDataFrame or a file path.")
 
-        self.add_layer(vector_layer)
+        self.add_layer(vector_layer, layer_name)
 
     def add_zoom_slider(
         self, description="Zoom level", min=0, max=24, value=10, position="topright"
@@ -317,38 +342,59 @@ class Map(ipyleaflet.Map):
                     print(f"Icon: {change.icon}")
 
         for tool in grid.children:
-            tool.on_click(toolbar_callback)
-            
-    def add_time_slider(
-        self,
-        layers={},
-        labels=None,
-        time_interval=1,
-        position="bottomright",
-        slider_length="150px",
-        zoom_to_layer=False,
+            tool.on_click(toolbar_callback)    
+
+    '''def split_map(
+        left_layer="TERRAIN",
+        right_layer="OpenTopoMap",
+        #left_args={},
+       # right_args={},
         **kwargs,
     ):
-        """Adds a time slider to the map.
+        
+        pass'''
+    
+    def add_time_slider(
+            self,
+            layers={},
+            labels=None,
+            time_interval=1,
+            position="bottomright",
+            slider_length="150px",
+            zoom_to_layer=False,
+            **kwargs,
+        ):
+            """Adds a time slider to the map.
+
+            Args:
+                layers (dict, optional): The dictionary containing a set of XYZ tile layers.
+                labels (list, optional): The list of labels to be used for the time series. Defaults to None.
+                time_interval (int, optional): Time interval in seconds. Defaults to 1.
+                position (str, optional): Position to place the time slider, can be any of ['topleft', 'topright', 'bottomleft', 'bottomright']. Defaults to "bottomright".
+                slider_length (str, optional): Length of the time slider. Defaults to "150px".
+                zoom_to_layer (bool, optional): Whether to zoom to the extent of the selected layer. Defaults to False.
+
+            """
+            from .toolbar import time_slider
+
+            time_slider(
+                self,
+                layers,
+                labels,
+                time_interval,
+                position,
+                slider_length,
+                zoom_to_layer,
+                **kwargs,
+            )
+
+    def zoom_to_bounds(self, bounds):
+        """Zooms to a bounding box in the form of [minx, miny, maxx, maxy].
 
         Args:
-            layers (dict, optional): The dictionary containing a set of XYZ tile layers.
-            labels (list, optional): The list of labels to be used for the time series. Defaults to None.
-            time_interval (int, optional): Time interval in seconds. Defaults to 1.
-            position (str, optional): Position to place the time slider, can be any of ['topleft', 'topright', 'bottomleft', 'bottomright']. Defaults to "bottomright".
-            slider_length (str, optional): Length of the time slider. Defaults to "150px".
-            zoom_to_layer (bool, optional): Whether to zoom to the extent of the selected layer. Defaults to False.
-
+            bounds (list | tuple): A list/tuple containing minx, miny, maxx, maxy values for the bounds.
         """
-        from .toolbar import time_slider
-
-        time_slider(
-            self,
-            layers,
-            labels,
-            time_interval,
-            position,
-            slider_length,
-            zoom_to_layer,
-            **kwargs,
-        )
+        #  The ipyleaflet fit_bounds method takes lat/lon bounds in the form [[south, west], [north, east]].
+        self.fit_bounds([[bounds[1], bounds[0]], [bounds[3], bounds[2]]])
+        
+    

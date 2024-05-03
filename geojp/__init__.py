@@ -2,6 +2,6 @@
 
 __author__ = """Brycen Harris"""
 __email__ = "bharri94@vols.utk.edu"
-__version__ = "0.0.5"
+__version__ = "0.0.6"
 
 #from .geojp import Map

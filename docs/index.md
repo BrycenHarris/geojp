@@ -28,4 +28,5 @@ Creating Heat Maps: Geojp supports the creation of heat maps to visualize data d
 
 [![image](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/17H0MxwnqKpQc3H-nduDP9w2p5Glcabsa?usp=sharing)
 
-## Walkthrough Video
+## Package Walkthrough Video
+https://youtu.be/E36S2q0E0i8 
